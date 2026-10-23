@@ -1,0 +1,3 @@
+# Pareto
+
+Content coming soon.
