@@ -1,28 +1,47 @@
 import { defineConfig } from 'vitepress'
 
-// https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "Documentation",
-  description: "A VitePress Site",
+  title: "Battery Informatics",
+  description: "MOQD-NMC Crystal Structure Prediction Documentation",
+  base: '/Documentation/',
+
   themeConfig: {
-    // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: 'Home', link: '/' },
-      { text: 'Examples', link: '/markdown-examples' }
+      { text: 'Implementation', link: '/implementation' },
+      { text: 'Results', link: '/results' }
     ],
 
     sidebar: [
       {
-        text: 'Examples',
+        text: 'Background',
         items: [
-          { text: 'Markdown Examples', link: '/markdown-examples' },
-          { text: 'Runtime API Examples', link: '/api-examples' }
+          { text: 'NMC Cathode Materials', link: '/background/nmc' },
+          { text: 'XtalOpt Architecture', link: '/background/xtalopt' },
+          { text: 'MOME-MAP-Elites', link: '/background/moqd' }
+        ]
+      },
+      {
+        text: 'Implementation',
+        items: [
+          { text: 'GULP Setup', link: '/implementation/gulp' },
+          { text: 'Descriptors', link: '/implementation/descriptors' },
+          { text: 'Grid Archive', link: '/implementation/archive' },
+          { text: 'Parent Selection', link: '/implementation/selection' }
+        ]
+      },
+      {
+        text: 'Results',
+        items: [
+          { text: 'Pareto Fronts', link: '/results/pareto' },
+          { text: 'Phase Stability', link: '/results/stability' },
+          { text: 'Composition Analysis', link: '/results/composition' }
         ]
       }
     ],
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
+      { icon: 'github', link: 'https://github.com/Battery-Informatics/Documentation' }
     ]
   }
 })
