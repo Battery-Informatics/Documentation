@@ -66,20 +66,15 @@ does not produce an error — it produces a run that completes normally and
 reports energies that mean nothing, and every structure ranked, every hull
 computed and every result downstream inherits that.
 
-::: warning TODO — NMC potential parameters
 The parameters above are the stock TiO₂ set that ships with XtalOpt, used to
 exercise the pipeline against a known-good forcefield while the MOME machinery
-was being built.
+was being built. They are not the values for an NMC search.
 
-A validated Li–Ni–Mn–Co–O parameter set still needs to be substituted in,
-together with the ionic charges for Li, Ni, Mn, Co and O. The NMC template
-currently on the composition-generator branch carries placeholder values and
-says so in a comment — round numbers chosen so the template parses, not a
-parameterised forcefield.
-
-Update this page with the real charges and parameters, and their source, once
-they are settled.
-:::
+<!-- TODO: substitute the validated Li-Ni-Mn-Co-O parameter set here, together
+     with the ionic charges for Li, Ni, Mn, Co and O, and record their source.
+     The NMC template currently on the composition-generator branch carries
+     placeholder values and says so in a comment - round numbers chosen so the
+     template parses, not a parameterised forcefield. -->
 
 ## The template
 

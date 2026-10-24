@@ -131,9 +131,7 @@ the mechanism flexible, but it means descriptor evaluation cost is added to
 every structure that survives to that stage, and a crashing script is an opaque
 `Ds_Fail` rather than a diagnosable error.
 
-::: warning TODO
-Density and bandgap were chosen as generic, non-committal descriptors while the
-pipeline was being validated. Whether they are the right behaviour axes for
-cathode discovery — as against something more directly tied to Li-ion
-transport — is still open.
-:::
+<!-- TODO: density and bandgap were chosen as generic, non-committal
+     descriptors while the pipeline was being validated. Decide whether they
+     are the right behaviour axes for cathode discovery, as against something
+     more directly tied to Li-ion transport. -->
