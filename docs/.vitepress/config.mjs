@@ -23,13 +23,13 @@ export default withMermaid(defineConfig({
         items: [
           { text: 'NMC Cathode Materials', link: '/background/nmc' },
           { text: 'XtalOpt Architecture', link: '/background/xtalopt' },
+          { text: 'GULP Setup', link: '/background/gulp' },
           { text: 'MOME-MAP-Elites', link: '/background/moqd' }
         ]
       },
       {
         text: 'Implementation',
         items: [
-          { text: 'GULP Setup', link: '/implementation/gulp' },
           { text: 'Descriptors', link: '/implementation/descriptors' },
           { text: 'Grid Archive', link: '/implementation/archive' },
           { text: 'Parent Selection', link: '/implementation/selection' }
