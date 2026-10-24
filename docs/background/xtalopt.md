@@ -20,69 +20,13 @@ three angles $\alpha$, $\beta$, $\gamma$ define the parallelepiped that repeats.
 cell edge rather than in absolute distance. This keeps the description
 independent of cell size.
 
-<figure class="unit-cell-figure">
-<svg viewBox="0 0 520 320" role="img"
-     aria-label="A unit cell drawn as a parallelepiped, with edge vectors a, b and c meeting at one corner and the angles alpha, beta and gamma between them">
-  <g fill="none" stroke="currentColor" stroke-width="1.6"
-     stroke-linecap="round" stroke-linejoin="round">
-    <!-- hidden edges, meeting at the rear vertex -->
-    <g stroke-dasharray="5 5" opacity="0.45">
-      <path d="M110 240 L260 180" />
-      <path d="M260 180 L430 210" />
-      <path d="M260 180 L260 40" />
-    </g>
-    <!-- visible edges -->
-    <path d="M110 240 L280 270 L430 210" />
-    <path d="M110 240 L110 100 L260 40 L430 70 L430 210" />
-    <path d="M110 100 L280 130 L430 70" />
-    <path d="M280 270 L280 130" />
-  </g>
-  <!-- edge vectors from the origin corner -->
-  <g fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round">
-    <path d="M110 240 L280 270" />
-    <path d="M110 240 L260 180" />
-    <path d="M110 240 L110 100" />
-  </g>
-  <!-- angle arcs at the origin corner -->
-  <g fill="none" stroke="currentColor" stroke-width="1.3" opacity="0.75">
-    <path d="M158 248 A 50 50 0 0 0 150 220" />
-    <path d="M150 220 A 58 58 0 0 0 110 182" />
-    <path d="M110 198 A 42 42 0 0 0 148 244" opacity="0" />
-  </g>
-  <!-- atoms at fractional positions inside the cell -->
-  <g fill="currentColor" opacity="0.8">
-    <circle cx="250" cy="175" r="8" />
-    <circle cx="205" cy="120" r="6" />
-    <circle cx="320" cy="195" r="6" />
-  </g>
-  <g fill="currentColor" font-size="19" font-style="italic"
-     font-family="Georgia, 'Times New Roman', serif">
-    <text x="196" y="277">a</text>
-    <text x="186" y="196">b</text>
-    <text x="88" y="174">c</text>
-  </g>
-  <g fill="currentColor" font-size="15" opacity="0.8"
-     font-family="Georgia, 'Times New Roman', serif">
-    <text x="163" y="236">&#947;</text>
-    <text x="131" y="206">&#945;</text>
-    <text x="137" y="252">&#946;</text>
-  </g>
-</svg>
-<figcaption>
+![A unit cell drawn as a parallelepiped, with edge vectors a, b and c meeting at one corner, the angles alpha, beta and gamma between them, and the x, y, z reference axes](/images/unitcell.gif)
 
-*The unit cell. Three edge vectors $a$, $b$, $c$ and the three angles between
+*The unit cell. Three edge lengths $a$, $b$, $c$ and the three angles between
 them — $\gamma$ between $a$ and $b$, $\beta$ between $a$ and $c$, $\alpha$
 between $b$ and $c$ — define the container. The atoms inside it, placed at
-fractional coordinates, are the contents. Dashed edges run behind the cell.*
-
-</figcaption>
-</figure>
-
-<style scoped>
-.unit-cell-figure { margin: 2rem 0; }
-.unit-cell-figure svg { width: 100%; max-width: 460px; height: auto; display: block; margin: 0 auto; color: var(--vp-c-text-1); }
-.unit-cell-figure figcaption { margin-top: 0.5rem; }
-</style>
+fractional coordinates, are the contents. Figure from
+[DoITPoMS][doitpoms], University of Cambridge.*
 
 ## Why structure prediction is the problem
 
@@ -152,46 +96,47 @@ The pipeline below is one pass of the evolutionary loop. It runs continuously:
 the queue manager keeps a target number of structures in flight, and every time
 a slot opens a new candidate is generated.
 
-```mermaid
-graph TD
-    A[Composition input] --> B[Random structure generation]
-    B --> C{Enough optimized parents?}
-    C -- No --> B
-    C -- Yes --> D[Parent selection]
-    D --> E[Genetic operator<br/>crossover / stripple / permustrain / ...]
-    E --> F[Validity check<br/>interatomic distances, composition]
-    F -- Rejected --> D
-    F -- Accepted --> G[Local optimization<br/>GULP / VASP / CASTEP]
-    G --> H[Similarity check<br/>XtalComp + RDF fingerprint]
-    H -- Duplicate --> I[Marked similar]
-    H -- Novel --> J[Enthalpy / hull ranking]
-    J --> K[(Parent pool)]
-    K --> D
-```
+![The XtalOpt variable-composition multi-objective workflow: sample an initial population from preselected compositions, relax the structures with an external code, evaluate objectives, compute the convex hull, select parents by Pareto optimisation or scalar fitness, apply genetic operations to generate new structures, and relax again](/images/xtalopt-flow.png)
+
+*The XtalOpt search loop, as described by its authors. Figure from the
+[XtalOpt project][xtalopt-site], Zurek Lab, University at Buffalo.*
 
 The stages, in order:
 
-**Generation.** Until enough optimised parents exist, structures are created at
-random — optionally with imposed symmetry, so that generated candidates are
-chemically sensible rather than arbitrary point clouds. After that, offspring
-come from the operators above.
+**Sample the initial population.** The run starts from a set of preselected
+compositions — in a variable-composition search these are points in the
+composition simplex, the triangle shown at the left of the figure. Structures
+for them are generated at random, optionally with imposed symmetry so that
+candidates are chemically sensible rather than arbitrary point clouds. Before a
+candidate is accepted it is checked for physical plausibility, principally that
+no two atoms sit closer than their combined covalent radii allow.
 
-**Validity checking.** Before a candidate is accepted it is checked for physical
-plausibility, principally that no two atoms sit closer than their combined
-covalent radii allow.
+**Relax the structures.** XtalOpt does not compute energies itself. It writes
+input files for an external code — GULP, VASP, CASTEP, Quantum ESPRESSO,
+SIESTA, LAMMPS, MTP and others — and submits the job through a queue interface,
+local or remote. The external code relaxes the structure to a nearby local
+minimum and returns the energy.
 
-**Local optimisation.** XtalOpt does not compute energies itself. It writes
-input files for an external code — GULP, VASP, CASTEP, PWSCF, SIESTA — and
-submits the job through a queue interface, local or remote. The external code
-relaxes the structure to a nearby local minimum and returns the energy.
+**Evaluate objectives.** Beyond energy, user-defined objectives can be computed
+by external tools and attached to the structure. This is the hook our voltage
+objective uses.
 
-**Similarity filtering.** Relaxation tends to funnel different starting
-structures into the same minimum. Duplicates are detected and removed so the
-population does not collapse onto one answer.
+**Compute the convex hull.** For variable-composition searches, stability is
+measured as distance above the convex hull of formation energies rather than by
+raw enthalpy, so that structures of different compositions can be compared.
 
-**Ranking.** Surviving structures are ranked by enthalpy, or by distance above
-the convex hull for variable-composition searches, and the best become the
-parent pool for the next round.
+**Select parents.** Survivors are ranked and a parent pool is drawn from them,
+either by scalar fitness or by Pareto optimisation when several objectives are
+active. **This is the stage our work replaces** — see
+[MOME / MAP-Elites](/background/moqd).
+
+**Apply genetic operations.** The operators above produce offspring from the
+selected parents, and the loop returns to relaxation.
+
+Not shown in the figure, but present in the code, is the **similarity filter**.
+Relaxation tends to funnel different starting structures into the same minimum,
+so duplicates are detected — by XtalComp, plus an RDF fingerprint comparison —
+and marked, keeping the population from collapsing onto one answer.
 
 ## XtalOpt and USPEX
 
@@ -236,3 +181,15 @@ express dopant substitution across chemical systems.
   evolutionary algorithm for crystal structure prediction*, The Journal of
   Physical Chemistry C, **125**, 1601–1620, 2021.
   [DOI](https://doi.org/10.1021/acs.jpcc.0c09531)
+
+## Figure sources
+
+- **Unit cell** — [DoITPoMS, University of Cambridge][doitpoms]. DoITPoMS
+  teaching resources are released under a Creative Commons
+  Attribution-NonCommercial-ShareAlike licence.
+- **XtalOpt workflow** — [XtalOpt project][xtalopt-site], Zurek Lab, University
+  at Buffalo. Reproduced with credit to the XtalOpt authors; see also Falls et
+  al. (2021), referenced above.
+
+[doitpoms]: https://www.doitpoms.ac.uk/tlplib/crystallography3/parameters.php
+[xtalopt-site]: https://xtalopt.github.io/

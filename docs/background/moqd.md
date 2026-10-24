@@ -74,11 +74,15 @@ The resulting structure is a grid of Pareto sets. Every cell illuminates one
 behavioural niche and, within it, retains the full range of trade-offs between
 the competing objectives.
 
-::: info Figure pending
-`mome-archive.png` — a 2-D grid with descriptor axes, some cells empty and some
-occupied, and one cell expanded to show the small Pareto front it holds. This
-is the central diagram of the page.
-:::
+![The MOME loop: a MAP-Elites grid of behavioural cells feeds Pareto front selection, then individual selection, variation, relaxation and evaluation, with the result added back to a cell's Pareto front and thence to the grid](/images/map-elites.png)
+
+*The MOME loop applied to crystal structure prediction. The grid at the left is
+the archive — each square a behavioural niche, shading showing quality. A cell
+is chosen, a structure drawn from the Pareto front it holds, varied, relaxed
+and evaluated; the result is offered back to the Pareto front of whichever cell
+its descriptors place it in, and the archive updates. The surrogate evaluation
+step shown here is specific to that paper's method — our implementation
+evaluates directly. Figure from [Janmohamed et al., GECCO 2024][moqd-paper].*
 
 ## The trade-off, concretely
 
@@ -142,3 +146,11 @@ alternatives if it fails.
 - Wolinska, M., Walsh, A., & Cully, A. — *Illuminating the property space in
   crystal structure prediction using Quality-Diversity algorithms*,
   arXiv:2403.03511, 2024. [arXiv](https://arxiv.org/abs/2403.03511)
+
+## Figure sources
+
+- **The MOME loop** — [Janmohamed, H., Wolinska, M., Surana, S., Pierrot, T.,
+  Walsh, A., & Cully, A., *Multi-Objective Quality-Diversity for Crystal
+  Structure Prediction*, GECCO 2024][moqd-paper].
+
+[moqd-paper]: https://doi.org/10.1145/3638529.3654048
