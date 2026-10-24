@@ -3,8 +3,8 @@ layout: home
 
 hero:
   name: "Battery Informatics"
-  text: "Quality-diversity crystal structure prediction for cathode materials"
-  tagline: Extending XtalOpt with a multi-objective behaviour-space archive, and with composition input that can express dopant substitution — searching for diverse, viable NMC cathode candidates rather than a single lowest-energy structure.
+  text: "Quality-diversity crystal structure prediction"
+  tagline: Searching for diverse, viable NMC cathode candidates — not just the lowest-energy one.
   actions:
     - theme: brand
       text: Background
@@ -18,15 +18,15 @@ hero:
 
 features:
   - title: Background
-    details: The cathode chemistry the project targets, how XtalOpt searches crystal structures, how candidates are evaluated, and the quality-diversity algorithm layered on top.
+    details: The cathode chemistry, how XtalOpt searches structures, and the quality-diversity algorithm layered on top.
     link: /background/nmc
-    linkText: Start with NMC cathodes
+    linkText: NMC cathodes
   - title: Implementation
-    details: What was built — composition input spanning several chemical systems, behaviour descriptors, the grid archive that replaces the parent pool, and archive-based parent selection.
+    details: Composition input across chemical systems, behaviour descriptors, the grid archive, and archive-based selection.
     link: /implementation/composition
-    linkText: See the extensions
+    linkText: The extensions
   - title: Results
-    details: The runs in the order they happened, from baseline rediscovery through variable and multi-composition searches to the quality-diversity archive.
+    details: The runs in the order they happened, from baseline rediscovery to the quality-diversity archive.
     link: /results/experiments
-    linkText: Read the experiment log
+    linkText: Experiment log
 ---

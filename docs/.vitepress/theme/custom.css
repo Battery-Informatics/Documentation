@@ -1,0 +1,32 @@
+/**
+ * Home hero, no-image case.
+ *
+ * The default theme caps .name/.text at 392px and gives .main two-thirds of
+ * the container, which is sized for a hero with an image alongside it. With
+ * no image those rules strand the text in a narrow left-hand column and leave
+ * the remaining third empty. Centre it and let the headings use the width.
+ */
+@media (min-width: 960px) {
+  .VPHero:not(.has-image) .container {
+    text-align: center;
+  }
+
+  .VPHero:not(.has-image) .main {
+    width: 100%;
+  }
+
+  .VPHero:not(.has-image) .name,
+  .VPHero:not(.has-image) .text {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .VPHero:not(.has-image) .tagline {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .VPHero:not(.has-image) .actions {
+    justify-content: center;
+  }
+}
