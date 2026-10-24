@@ -39,9 +39,10 @@ export default withMermaid(defineConfig({
       {
         text: 'Results',
         items: [
-          { text: 'Pareto Fronts', link: '/results/pareto' },
-          { text: 'Phase Stability', link: '/results/stability' },
-          { text: 'Composition Analysis', link: '/results/composition' }
+          { text: 'Experiment Log', link: '/results/experiments' },
+          { text: 'Baseline Validation', link: '/results/stability' },
+          { text: 'Variable and Multi-Composition', link: '/results/composition' },
+          { text: 'MOQD Archive', link: '/results/pareto' }
         ]
       }
     ],
