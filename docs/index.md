@@ -4,17 +4,7 @@ layout: home
 hero:
   name: "Battery Informatics"
   text: "Quality-diversity crystal structure prediction"
-  tagline: Searching for diverse, viable NMC cathode candidates — not just the lowest-energy one.
-  actions:
-    - theme: brand
-      text: Background
-      link: /background/nmc
-    - theme: alt
-      text: Implementation
-      link: /implementation/composition
-    - theme: alt
-      text: Results
-      link: /results/experiments
+  tagline: Searching for diverse, viable NMC cathode candidates.
 
 features:
   - title: Background
