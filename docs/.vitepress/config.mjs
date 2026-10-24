@@ -13,8 +13,9 @@ export default withMermaid(defineConfig({
   themeConfig: {
     nav: [
       { text: 'Home', link: '/' },
-      { text: 'Implementation', link: '/implementation' },
-      { text: 'Results', link: '/results' }
+      { text: 'Background', link: '/background/nmc' },
+      { text: 'Implementation', link: '/implementation/composition' },
+      { text: 'Results', link: '/results/experiments' }
     ],
 
     sidebar: [
