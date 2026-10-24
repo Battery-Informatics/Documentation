@@ -1,6 +1,7 @@
 import { defineConfig } from 'vitepress'
+import { withMermaid } from 'vitepress-plugin-mermaid'
 
-export default defineConfig({
+export default withMermaid(defineConfig({
   title: "Battery Informatics",
   description: "MOQD-NMC Crystal Structure Prediction Documentation",
   base: '/Documentation/',
@@ -48,4 +49,4 @@ export default defineConfig({
       { icon: 'github', link: 'https://github.com/Battery-Informatics/Documentation' }
     ]
   }
-})
+}))
