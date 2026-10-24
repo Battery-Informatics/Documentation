@@ -20,11 +20,69 @@ three angles $\alpha$, $\beta$, $\gamma$ define the parallelepiped that repeats.
 cell edge rather than in absolute distance. This keeps the description
 independent of cell size.
 
-::: info Figure pending
-`crystal-unit-cell.png` — a labelled parallelepiped showing $a$, $b$, $c$ and
-$\alpha$, $\beta$, $\gamma$, with a few atoms inside at fractional positions.
-Illustrates the container/contents split above.
-:::
+<figure class="unit-cell-figure">
+<svg viewBox="0 0 520 320" role="img"
+     aria-label="A unit cell drawn as a parallelepiped, with edge vectors a, b and c meeting at one corner and the angles alpha, beta and gamma between them">
+  <g fill="none" stroke="currentColor" stroke-width="1.6"
+     stroke-linecap="round" stroke-linejoin="round">
+    <!-- hidden edges, meeting at the rear vertex -->
+    <g stroke-dasharray="5 5" opacity="0.45">
+      <path d="M110 240 L260 180" />
+      <path d="M260 180 L430 210" />
+      <path d="M260 180 L260 40" />
+    </g>
+    <!-- visible edges -->
+    <path d="M110 240 L280 270 L430 210" />
+    <path d="M110 240 L110 100 L260 40 L430 70 L430 210" />
+    <path d="M110 100 L280 130 L430 70" />
+    <path d="M280 270 L280 130" />
+  </g>
+  <!-- edge vectors from the origin corner -->
+  <g fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round">
+    <path d="M110 240 L280 270" />
+    <path d="M110 240 L260 180" />
+    <path d="M110 240 L110 100" />
+  </g>
+  <!-- angle arcs at the origin corner -->
+  <g fill="none" stroke="currentColor" stroke-width="1.3" opacity="0.75">
+    <path d="M158 248 A 50 50 0 0 0 150 220" />
+    <path d="M150 220 A 58 58 0 0 0 110 182" />
+    <path d="M110 198 A 42 42 0 0 0 148 244" opacity="0" />
+  </g>
+  <!-- atoms at fractional positions inside the cell -->
+  <g fill="currentColor" opacity="0.8">
+    <circle cx="250" cy="175" r="8" />
+    <circle cx="205" cy="120" r="6" />
+    <circle cx="320" cy="195" r="6" />
+  </g>
+  <g fill="currentColor" font-size="19" font-style="italic"
+     font-family="Georgia, 'Times New Roman', serif">
+    <text x="196" y="277">a</text>
+    <text x="186" y="196">b</text>
+    <text x="88" y="174">c</text>
+  </g>
+  <g fill="currentColor" font-size="15" opacity="0.8"
+     font-family="Georgia, 'Times New Roman', serif">
+    <text x="163" y="236">&#947;</text>
+    <text x="131" y="206">&#945;</text>
+    <text x="137" y="252">&#946;</text>
+  </g>
+</svg>
+<figcaption>
+
+*The unit cell. Three edge vectors $a$, $b$, $c$ and the three angles between
+them — $\gamma$ between $a$ and $b$, $\beta$ between $a$ and $c$, $\alpha$
+between $b$ and $c$ — define the container. The atoms inside it, placed at
+fractional coordinates, are the contents. Dashed edges run behind the cell.*
+
+</figcaption>
+</figure>
+
+<style scoped>
+.unit-cell-figure { margin: 2rem 0; }
+.unit-cell-figure svg { width: 100%; max-width: 460px; height: auto; display: block; margin: 0 auto; color: var(--vp-c-text-1); }
+.unit-cell-figure figcaption { margin-top: 0.5rem; }
+</style>
 
 ## Why structure prediction is the problem
 
