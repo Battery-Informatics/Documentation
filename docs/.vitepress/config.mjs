@@ -30,6 +30,7 @@ export default withMermaid(defineConfig({
       {
         text: 'Implementation',
         items: [
+          { text: 'Composition Input', link: '/implementation/composition' },
           { text: 'Descriptors', link: '/implementation/descriptors' },
           { text: 'Grid Archive', link: '/implementation/archive' },
           { text: 'Parent Selection', link: '/implementation/selection' }
