@@ -5,6 +5,10 @@ export default defineConfig({
   description: "MOQD-NMC Crystal Structure Prediction Documentation",
   base: '/Documentation/',
 
+  markdown: {
+    math: true
+  },
+
   themeConfig: {
     nav: [
       { text: 'Home', link: '/' },
