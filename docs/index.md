@@ -3,7 +3,7 @@ layout: home
 
 hero:
   name: "Battery Informatics"
-  text: "Quality-diversity crystal structure prediction"
+  text: "Quality-diversity in crystal structure prediction"
   tagline: Searching for diverse, viable NMC cathode candidates.
 
 features:
@@ -20,3 +20,16 @@ features:
     link: /results/experiments
     linkText: Experiment log
 ---
+
+
+## Contributors
+
+**Guide:** Dr Shunmuga Velayutham C
+
+| Name | Roll No |
+| --- | --- |
+| Ashwin V A | CB.SC.U4CSE23005 |
+| Ariya P | CB.SC.U4CSE23008 |
+| Balaji N | CB.SC.U4CSE23011 |
+| Harish G M | CB.SC.U4CSE23027 |
+| Jayadev D | CB.SC.U4CSE23030 |
